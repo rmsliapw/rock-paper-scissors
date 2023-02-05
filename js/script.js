@@ -1,25 +1,19 @@
-'use strict'
+'use strict';
+
+// Computer selection
+function getCompChoice() {
+  const randomNum = Math.ceil(Math.random() * 3);
+  if (randomNum === 1) {
+    return 'rock';
+  } else if (randomNum === 2) {
+    return "paper";
+  } else {
+    return "scissors";
+  }
+}
 
 // Play one round
-function playRound() {
-
-  // Player and computer choices
-  function getCompChoice() {
-    const randomNum = Math.ceil(Math.random() * 3);
-    if (randomNum === 1) {
-      return 'rock';
-    } else if (randomNum === 2) {
-      return "paper";
-    } else {
-      return "scissors";
-    }
-  }
-
-
-  const player = prompt('Enter your selection: ').toLowerCase();
-
-  const comp = getCompChoice();
-  console.log("Computer choosing " + comp);
+function playRound(player, comp) {
 
   if (player === 'rock') {
     return comp === 'paper' ? 'Computer won' : comp === 'scissors' ? 'Player won' : 'Try again';
@@ -30,25 +24,47 @@ function playRound() {
   }
 }
 
-// Play five rounds
-function game() {
-  let playerScore = 0;
-  let compScore = 0;
-
-  for (let i = 0; i < 5; i++) {
-    const result = playRound();
-    console.log(result);
-
-    if (result.includes('Player')) {
-      playerScore++;
-    } else if (result.includes('Computer')) {
-      compScore++;
-    }
+// Update score
+function updateScore(result) {
+  if (result.includes('Player')) {
+    playerScore++;
+    playerScoreBox.textContent = playerScore;
+  } else if (result.includes('Computer')) {
+    compScore++;
+    computerScoreBox.textContent = compScore;
   }
 
-  return "Result is: " + "Player : " + playerScore + " " + "Computer: " + compScore;
+  if (playerScore === 5) {
+    selections.innerHTML = "";
+    selections.textContent = "Player won! ";
+    selections.style.color = "green";
+    computerText.textContent = '';
+    resultText.textContent = '';
+    return;
+  } else if (compScore === 5) {
+    selections.innerHTML = "";
+    selections.textContent = "Computer won!";
+    selections.style.color = "red";
+    computerText.textContent = '';
+    resultText.textContent = '';
+    return;
+  }
 }
 
-// Log game rusult
-const gameResult = game();
-console.log(gameResult);
+const selections = document.querySelector('.selections');
+const images = document.querySelectorAll('img');
+const computerText = document.querySelector('.computer');
+const resultText = document.querySelector('.result');
+const playerScoreBox = document.querySelector('.player-score');
+const computerScoreBox = document.querySelector('.computer-score');
+let playerScore = 0;
+let compScore = 0;
+
+images.forEach(image => image.addEventListener('click', (e) => {
+  const player = e.target.alt.toLowerCase();
+  const comp = getCompChoice();
+  computerText.textContent = "Computer choosing " + comp;
+  const result = playRound(player, comp);
+  resultText.textContent = result;
+  updateScore(result);
+}))

@@ -1,0 +1,42 @@
+body {
+  font-family: sans-serif;
+  color: white;
+}
+
+main {
+  background-color: lightseagreen;
+  height: 100vh;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+
+.selections,
+.scores {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  font-size: 32px;
+}
+
+.selections img {
+  width: 250px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.score-box {
+  width: 100px;
+  height: 100px;
+  background-color: white;
+  color: lightseagreen;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
