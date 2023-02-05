@@ -1,1 +1,2 @@
-# rock-paper-scissors
+# Rock Paper Scissors
+Classis game console application.
