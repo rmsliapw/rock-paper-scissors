@@ -11,7 +11,7 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 50px;
+  gap: 20px;
 }
 
 .selections,
@@ -23,8 +23,12 @@ main {
   font-size: 32px;
 }
 
+.selections {
+  width: 50%;
+}
+
 .selections img {
-  width: 250px;
+  width: 33%;
   border-radius: 10px;
   cursor: pointer;
 }

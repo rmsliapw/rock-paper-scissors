@@ -1,2 +1,2 @@
 # Rock Paper Scissors
-Classis game console application.
+Classis game with UI and JS logic.
